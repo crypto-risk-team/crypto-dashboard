@@ -1,0 +1,295 @@
+/* ================= GLOBAL ================= */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #060b23, #0b1a3a);
+    color: white;
+}
+
+/* ================= LAYOUT ================= */
+
+.container {
+    display: flex;
+    padding: 40px;
+}
+
+.left {
+    width: 45%;
+    padding-right: 30px;
+}
+
+.right {
+    width: 55%;
+}
+
+/* ================= LISTS ================= */
+
+.left ul li {
+    margin-bottom: 12px;
+}
+
+/* ================= CARDS ================= */
+
+.card,
+.dashboard-card,
+.chart-card {
+    background: #111b3c;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* ================= HEADERS ================= */
+
+.milestone-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.section-heading {
+    margin-top: 25px;
+    color: #6cb6ff;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ================= NAVIGATION ================= */
+
+.nav-btn {
+    margin: 20px;
+    display: inline-block;
+    padding: 8px 14px;
+    background: #1f8cff;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+/* ================= TABLE ================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+tr {
+    border-bottom: 1px solid #23336d;
+}
+
+.metrics-table th {
+    color: #6cb6ff;
+}
+
+.metrics-table tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* ================= COLORS ================= */
+
+.green {
+    color: #00ff9c;
+}
+
+.red {
+    color: #ff5c5c;
+}
+
+/* ================= BUTTONS ================= */
+
+button {
+    background: #1f8cff;
+    border: none;
+    padding: 8px 14px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Range Buttons */
+
+.range-buttons {
+    margin: 15px 0;
+}
+
+.range-btn {
+    background: #182a5c;
+    color: white;
+    padding: 6px 12px;
+    margin-right: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.range-btn.active {
+    background: #1f8cff;
+}
+
+/* ================= CHECK LIST ================= */
+
+.check-list li {
+    margin-bottom: 12px;
+    list-style: none;
+    position: relative;
+    padding-left: 22px;
+}
+
+.check-list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #3fd4ff;
+}
+
+/* ================= CHART ================= */
+
+.chart-card {
+    margin-top: 30px;
+    background: #0f1b3d;
+}
+
+.chart-card canvas {
+    width: 100% !important;
+    height: 220px !important;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-card {
+    background: #0f1b3d;
+    border-radius: 14px;
+}
+
+.live-dot {
+    color: #4cff9e;
+    font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+    }
+
+    .left {
+        padding-right: 0;
+    }
+}
+/* ================= HOME PAGE ================= */
+
+.home-container {
+    height: 100vh;
+    background-image: url("/static/images/—Pngtree—deep indigo textured background image_13493962.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.home-overlay {
+     height: 100%;
+    width: 100%;
+    background: rgba(6, 11, 35, 0.55);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.home-title {
+    font-size: 4.2rem;
+    font-weight: 700;
+    color: #63d2ff;
+    text-shadow: 0 0 25px rgba(99, 210, 255, 0.45);
+}
+
+.home-line {
+    width: 90px;
+    height: 4px;
+    background: #63d2ff;
+    margin: 18px 0;
+    border-radius: 10px;
+}
+
+.home-subtitle {
+    font-size: 1.7rem;
+    color: #d6e6ff;
+    margin-bottom: 40px;
+}
+
+
+.home-features {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #9fd3ff;
+}
+
+.feature i {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.home-buttons {
+    display: flex;
+    gap: 28px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.home-btn {
+    padding: 18px 44px;        /* BIGGER BUTTONS */
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 40px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.35s ease;
+}
+
+/* Colors */
+.home-btn.m1 {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+.home-btn.m2 {
+    background: linear-gradient(135deg, #7f00ff, #e100ff);
+}
+.home-btn.m3 {
+    background: linear-gradient(135deg, #11998e, #38ef7d);
+}
+.home-btn.m4 {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+}
+
+/* Hover effect */
+.home-btn:hover {
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+}

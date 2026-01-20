@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Milestone 2 – Risk Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<a href="/milestone1" class="nav-btn">← Back to Milestone 1</a>
+
+<div class="container">
+
+    <!-- ===== LEFT: BAR CHART ===== -->
+    <div class="left">
+        <h1 class="milestone-title">Volatility Comparison</h1>
+
+        <div class="chart-card">
+            <canvas id="volatilityChart"></canvas>
+        </div>
+    </div>
+
+    <!-- ===== RIGHT: METRICS DASHBOARD ===== -->
+    <div class="right">
+        <div class="card dashboard-card">
+
+            <div class="dashboard-header">
+                <h2>Risk Metrics Dashboard</h2>
+                <span class="live-dot">● Analysis</span>
+            </div>
+
+            <!-- Time Range Buttons -->
+            <div class="range-buttons">
+                <a href="/milestone2?days=30"
+                   class="range-btn {% if selected_days == 30 %}active{% endif %}">
+                    30D
+                </a>
+
+                <a href="/milestone2?days=90"
+                   class="range-btn {% if selected_days == 90 %}active{% endif %}">
+                    90D
+                </a>
+
+                <a href="/milestone2?days=365"
+                   class="range-btn {% if selected_days == 365 %}active{% endif %}">
+                    1Y
+                </a>
+            </div>
+
+            <!-- Metrics Table -->
+            <table class="metrics-table">
+                <tr>
+                    <th>Crypto</th>
+                    <th>Volatility</th>
+                    <th>Sharpe Ratio</th>
+                    <th>Beta</th>
+                </tr>
+
+                {% for _, row in metrics.iterrows() %}
+                <tr>
+                    <td>{{ row.Crypto }}</td>
+                    <td class="{% if row.Volatility > 6 %}red{% else %}green{% endif %}">
+    {{ row.Volatility }}
+</td>
+
+                    <td>{{ row.Sharpe }}</td>
+                    <td>{{ row.Beta }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== BAR CHART SCRIPT ===== -->
+{% if labels and volatility_values %}
+<script>
+const ctx = document.getElementById('volatilityChart').getContext('2d');
+
+const barColors = [
+    '#f7931a',  // BTC - Orange
+    '#627eea',  // ETH - Blue
+    '#00ffa3',  // SOL - Green
+    '#0033ad',  // ADA - Dark Blue
+    '#c2a633'   // DOGE - Gold
+];
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ labels | tojson }},
+        datasets: [{
+            label: 'Annualized Volatility',
+            data: {{ volatility_values | tojson }},
+            backgroundColor: barColors,
+            borderRadius: 6
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { display: false }
+        },
+        scales: {
+            x: { ticks: { color: '#cfd8ff' } },
+            y: { ticks: { color: '#cfd8ff' } }
+        }
+    }
+});
+</script>
+{% endif %}
+
+
+</body>
+</html>

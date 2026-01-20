@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Milestone 1</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+function refreshData() {
+    window.location.reload();
+}
+</script>
+
+</head>
+<body>
+
+<a href="/home" class="nav-btn">← Home</a>
+
+<div class="container">
+
+<div class="left">
+    <h1 class="milestone-title">Milestone 1: Data Acquisition</h1>
+
+    <div class="chart-card">
+        <h3>7-Day Price Trend</h3>
+        <canvas id="trendChart"></canvas>
+    </div>
+</div>
+
+<div class="right">
+    <div class="card">
+        <h2>Live Crypto Prices</h2>
+        <button onclick="refreshData()" style="margin-bottom: 12px;">
+    🔄 Refresh Data
+</button>
+
+        <table>
+            <tr>
+                <th>Crypto</th>
+                <th>Price</th>
+                <th>24h Change</th>
+                <th>Volume</th>
+            </tr>
+            {% for c in cryptos %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.price }}</td>
+                <td class="{{ 'green' if c.change > 0 else 'red' }}">{{ c.change }}%</td>
+                <td>{{ c.volume }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+</div>
+
+<script>
+const ctx = document.getElementById('trendChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: {{ days | tojson }},
+        datasets: [
+            {% for k, v in price_trends.items() %}
+            {
+                label: "{{ k }}",
+                data: {{ v | tojson }},
+                borderWidth: 2
+            },
+            {% endfor %}
+        ]
+    }
+});
+</script>
+
+</body>
+</html>
